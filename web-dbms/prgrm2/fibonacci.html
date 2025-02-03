@@ -1,0 +1,26 @@
+<html>
+<head> <title> program 3a:the first n fibonacci number </title> </head>
+<body>
+<script type="text/javascript">
+var a=0;
+var b=1;
+var c,i;
+var n=prompt("enter n:"," ");
+while(n<=0)
+{
+alert("enter positive value");
+n=prompt("enter n:"," ");
+}
+document.write("fibonacci series....<br />");
+document.write(a,"<br />");
+document.write(b,"<br />");
+for(i=0;i<n-2;i++)
+{
+c=a+b;
+document.write(c,"<br />");
+a=b;
+b=c;
+}
+</script >
+</body>
+</html>
