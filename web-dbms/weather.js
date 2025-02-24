@@ -1,6 +1,6 @@
 // API Key for OpenWeather
 const apiKey = "c06a70932f041eb20090f6c312e30e94"; // Replace with your actual API key
-const city = "Mangalore"; // Replace with any city you want
+const city = "Mangalore" // Replace with any city you want
 
 // URL to fetch weather data
 const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;

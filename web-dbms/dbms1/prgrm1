@@ -1,0 +1,112 @@
+Program 1:
+Create the following tables with properly specifying Primary keys, Foreign keys and
+solve the following queries.
+BRANCH (Branchid, Branchname, HOD)
+STUDENT (USN, Name, Address, Branchid, sem)
+BOOK (Bookid, Bookname, Authorid, Publisher, Branchid)
+AUTHOR (Authorid, Authorname, Country, age)
+BORROW(USN, Bookid, Borrowed_Date)
+Execute the following Queries:
+i.List the details of Students who are all studying in 2nd sem MCA.
+ii.List the students who are not borrowed any books.
+iii. Display the USN, Student name, Branch_name, Book_name, Author_name,
+Books_Borrowed_Date of 2nd
+sem MCA Students who borrowed books.
+iv. Display the number of books written by each Author.
+v.Display the student details who borrowed more than two books.
+vi.Display the student details who borrowed books of more than one Author.
+vii.Display the Book names in descending order of their names.
+viii.List the details of students who borrowed the books which are all published
+by the same publisher.
+
+Relational Model:
+
+Table Branch
+mysql> create table branch(branch_id int(10)primary key, branch_name varchar(20),
+hod varchar(20));
+Insert
+mysql> insert into branch values(101,'MCA','Shashidhar Kinni');
+mysql> insert into branch values(102,'MBA','Harish');
+mysql> insert into branch values(103,'BE','Asha Latha');
+mysql> insert into branch values(104,'Mtech','Suma');
+mysql> insert into branch values(105,'Btech','Malavika');
+mysql> select *from branch;
+
+Table Student
+
+mysql> create table student(usn varchar(10)primary key, s_name varchar(20),
+branch_id int(10)references branch(branch_id), sem varchar(20), address varchar(20));
+
+Insert
+mysql> insert into student values('s21','Nireeksha',101,2,'Adyar');
+mysql> insert into student values('s22','Akhrith',102,2,'Kasaragod');
+mysql> insert into student values('s23','Mehika',103,2,'vamadapav');
+mysql> insert into student values('s24','Chiranya',104,2,'Kodakal');
+mysql> insert into student values('s25','Thanvi',105,2,'Uppala');
+mysql> insert into student values('s26','Shraddha',101,1,'Udupi');
+mysql> insert into student values('s27','Adya',102,1,'Udupi');
+mysql> insert into student values('s28','Rithisha',101,2,'mumbai');
+mysql> select *from student;
+Table Author
+mysql> create table author(author_id int(10)primary key, author_name varchar(20),
+country varchar(20), age int(20));
+Insert
+mysql> insert into author values(1,'Sudha','India',30);
+mysql> insert into author values(2,'Kuvempu','India',70);
+mysql> insert into author values(3,'Kavin','America',50);
+mysql> insert into author values(4,'Lee min ho','Korea',70);
+
+mysql> insert into author values(5,'Xukai','China',25);
+mysql> select *from author;
+Table Book
+mysql> create table book(book_id int(10)primary key, book_name varchar(20),
+author_id int(10)references author(author_id), publisher varchar(20), branch_id
+int(10)references student(branch_id));
+Insert
+mysql> insert into book values(201,'Earth',1,'Mangala',101);
+mysql> insert into book values(202,'Happy',2,'Mangala',102);
+mysql> insert into book values(203,'Gold',3,'swapna',103);
+mysql> insert into book values(204,'My name',3,'Education',104);
+mysql> insert into book values(206,'The Horror',5,'Education',101);
+mysql> select *from book;
+Table Borrow
+mysql> create table borrow(usn varchar(10)references student(usn), book_id
+int(10)references book(book_id), borrowed_date date);
+Insert
+mysql> insert into borrow values('s21',201,'2023-05-03');
+mysql> insert into borrow values('s21',206,'2023-12-17');
+mysql> insert into borrow values('s22',203,'2023-10-21');
+mysql> insert into borrow values('s23',205,'2023-05-23');
+mysql> insert into borrow values('s24',202,'2023-01-15');
+
+mysql> insert into borrow values('s26',202,'2023-05-29');
+mysql> select *from borrow;
+Query 1:
+select s.* from student s join branch b on s.branchid = b.branchid where s.sem =
+2 and b.branchname = 'mca';
+Query 2:
+select s.* from student s left join borrow b on s.usn = b.usn where b.usn is null;
+Query 3:
+select s.usn, s.name as studentname, br.branchname, bo.bookname,
+a.authorname, b.borrowed_date from student s join branch br on s.branchid =
+br.branchid join borrow b on s.usn = b.usn join book bo on b.bookid = bo.bookid
+join author a on bo.authorid = a.authorid where s.sem = 2 and br.branchname =
+'mca';
+Query 4:
+select a.authorid, a.authorname, count(bo.bookid) as numberofbooks from
+author a left join book bo on a.authorid = bo.authorid group by a.authorid,
+a.authorname;
+Query 5:
+select s.* from student s join borrow b on s.usn = b.usn group by s.usn, s.name,
+s.address, s.branchid, s.sem having count(b.bookid) > 2;
+Query 6:
+select s.* from student s join borrow b on s.usn = b.usn join book bo on b.bookid
+= bo.bookid group by s.usn, s.name, s.address, s.branchid, s.sem having
+count(distinct bo.authorid) > 1;
+
+Query 7:
+select bookname from book order by bookname desc;
+Query 8:
+select distinct s.* from student s join borrow b on s.usn = b.usn join book bo on
+b.bookid = bo.bookid where bo.publisher in ( select publisher from book group
+by publisher having count(distinct bookid) > 1 );
