@@ -1,0 +1,26 @@
+Program No: 2
+Program Statement: Consider the following schema: STUDENT (USN, name,
+date_of_birth, branch, mark1, mark2, mark3, total, GPA)
+Execute the following queries:
+1. Update the column total by adding the columns mark1, mark2, mark3.
+2. Find the GPA score of all the students.
+3. Find the students who born on a particular year of birth from the date_of_birth
+column.
+4. List the students who are studying in a particular branch of study.
+5. Find the maximum GPA score of the student branch-wise.
+6. Find the students whose name starts with the alphabet “S”.
+7. Find the students whose name ends with the alphabets “AR”.
+8. Delete the student details whose USN is given as 1001
+create table Student(USN varchar(10)primary key, Name varchar(30), DOB
+date, Branch varchar(10), Mark1 int(4), Mark2 int(4), Mark3 int(4), Total
+int(3), GPA integer(5));
+INSERT RECORDS INTO STUDENT TABLE( note mark1 , mark2, mark 3 out
+of 100 total 300)
+1. update student set total = mark1 + mark2 + mark3;
+2. UPDATE STUDENT SET GPA = (total / 300) * 10;
+3. select *from Student where year(DOB)=2000;
+4. select Branch, max(GPA)from Student group by Branch;
+5. select name from Student where Branch="MCA";
+6. select *from Student where name like 'S%';
+7. select *from Student where name like '%AR';
+8. delete from Student where USN='1001';
