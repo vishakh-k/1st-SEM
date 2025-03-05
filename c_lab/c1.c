@@ -2,7 +2,7 @@
 
 int main(){
     char opr;
-    int num1,num2,result;
+    double num1,num2,result;
     printf("Simple calculator\n");
     printf("Availabale operations:\n");
     printf("----------------------\n");
@@ -14,26 +14,26 @@ int main(){
     printf("Enter an operation");
     scanf("%c",&opr);
     printf("Enter two numbers");
-    scanf("%d %d",&num1,&num2);
+    scanf("%lf %lf",&num1,&num2);
     switch(opr){
         case '+': 
             result=num1+num2;
-            printf("Addtion of two numbers %d",result);
+            printf("Addtion of two numbers %.2lf",result);
             break;
         case '-': 
             result=num1-num2;
-            printf("Substraction of two numbers %d",result);
+            printf("Substraction of two numbers %.2lf",result);
             break;
         case '*': 
             result=num1*num2;
-            printf("Multiplication of two numbers %d",result);
+            printf("Multiplication of two numbers %.2lf",result);
             break;
         case '/': 
             if(num2<=0){
                 printf("Division is not possible");
             }else{
                 result=num1/num2;
-                printf("Division of two numbers %d",result);
+                printf("Division of two numbers %.2lf",result);
             }
             break;
         default:
