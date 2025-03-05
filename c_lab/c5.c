@@ -21,6 +21,6 @@ int main(){
     }
     printf("The user name %s:",name);
     printf("The units used %d:",units);
-    printf("The bill name %.2f:",bill);
-    printf("The surcharge name %.2f:",surcharge);
+    printf("The bill  %.2f:",bill);
+    printf("The surcharge  %.2f:",surcharge);
 }
