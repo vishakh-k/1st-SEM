@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Colorful Stacked Paragraphs</title>
+  <style type="text/css">
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f7f7f7;
+    }
+
+    .paragraph-container {
+      position: relative;
+      width: 300px;
+    }
+
+    .paragraph {
+      position: absolute;
+      width: 100%;
+      padding: 20px;
+      background-color: #ffcc00;
+      /* Yellow */
+      border: 2px solid #ff9900;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .paragraph:nth-child(2) {
+      background-color: #00ccff;
+      /* Blue */
+      border-color: #0099cc;
+      top: 30px;
+    }
+
+    .paragraph:nth-child(3) {
+      background-color: #ff6699;
+      /* Pink */
+      border-color: #ff3366;
+      top: 60px;
+    }
+
+    .paragraph:hover {
+      transform: translateY(-20px);
+      z-index: 10;
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="paragraph-container">
+    <div class="paragraph">
+      <p>This is the first paragraph. It's bright yellow!</p>
+    </div>
+    <div class="paragraph">
+      <p>This is the second paragraph. It's cool blue!</p>
+    </div>
+    <div class="paragraph">
+      <p>This is the third paragraph. It's vibrant pink!</p>
+    </div>
+  </div>
+</body>
+
+</html>
