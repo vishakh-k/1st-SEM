@@ -2,18 +2,16 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Colorful Stacked Paragraphs</title>
+  <title>Colorful Stacked Paragraphs with JavaScript</title>
   <style type="text/css">
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #f7f7f7;
+      background: #f7f7f7;
+      margin: 0;
     }
 
     .paragraph-container {
@@ -25,35 +23,57 @@
       position: absolute;
       width: 100%;
       padding: 20px;
-      background-color: #ffcc00;
-      /* Yellow */
-      border: 2px solid #ff9900;
       border-radius: 10px;
+      border: 2px solid;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      transition: all 0.3s ease;
+      transition: 0.3s;
+    }
+
+    .paragraph:nth-child(1) {
+      background: #ffcc00;
+      top: 0;
     }
 
     .paragraph:nth-child(2) {
-      background-color: #00ccff;
-      /* Blue */
-      border-color: #0099cc;
+      background: #00ccff;
       top: 30px;
     }
 
     .paragraph:nth-child(3) {
-      background-color: #ff6699;
-      /* Pink */
-      border-color: #ff3366;
+      background: #ff6699;
       top: 60px;
     }
 
     .paragraph:hover {
-      transform: translateY(-20px);
-      z-index: 10;
+      transform: translateY(-10px);
       box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
     }
   </style>
+  <script type="text/javascript">
+    function setupHoverEffect() {
+      const paragraphs = document.querySelectorAll('.paragraph');
+
+      paragraphs.forEach((paragraph) => {
+        // Store the original top position
+        const originalTop = paragraph.style.top;
+
+        // Add event listener for mouse enter
+        paragraph.addEventListener('mouseenter', () => {
+          paragraph.style.transform = 'translateY(-20px)';
+          paragraph.style.zIndex = '10';
+          paragraph.style.boxShadow = '0 8px 12px rgba(0, 0, 0, 0.2)';
+        });
+
+        // Add event listener for mouse leave
+        paragraph.addEventListener('mouseleave', () => {
+          paragraph.style.transform = 'translateY(0)';
+          paragraph.style.zIndex = '1';
+          paragraph.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+        });
+      });
+    }
+    window.onload = setupHoverEffect;
+  </script>
 </head>
 
 <body>

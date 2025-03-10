@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Collapsible Paragraphs</title>
+    <style>
+        .container {
+            position: relative;
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        .para {
+            position: absolute;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid black;
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+            height: 30px;
+        }
+
+        .para:nth-child(1) {
+            top: 0;
+            background: lightblue;
+        }
+
+        .para:nth-child(2) {
+            top: 30px;
+            background: lightgreen;
+        }
+
+        .para:nth-child(3) {
+            top: 60px;
+            background: lightcoral;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="para" onmouseover="bringToTop(this)" onmouseout="restoreOrder()">Paragraph 1</div>
+        <div class="para" onmouseover="bringToTop(this)" onmouseout="restoreOrder()">Paragraph 2</div>
+        <div class="para" onmouseover="bringToTop(this)" onmouseout="restoreOrder()">Paragraph 3</div>
+    </div>
+
+    <script>
+        let paragraphs = document.querySelectorAll('.para');
+        let originalOrder = Array.from(paragraphs);
+
+        function bringToTop(element) {
+            element.style.zIndex = "10";
+        }
+
+        function restoreOrder() {
+            paragraphs.forEach((para, index) => {
+                para.style.zIndex = "1";
+            });
+        }
+    </script>
+</body>
+
+</html>

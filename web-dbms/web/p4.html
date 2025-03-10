@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Fruit Cost Calculator</title>
+    <script type="text/javascript">
+        function calculateTotal() {
+            let total = 0;
+            const taxRate = 0.05;
+
+            // Get all checkboxes and corresponding quantity inputs
+            const fruits = [
+                { id: 'apple', price: 0.59 },
+                { id: 'orange', price: 0.49 },
+                { id: 'banana', price: 0.39 }
+            ];
+
+            fruits.forEach(fruit => {
+                let checkbox = document.getElementById(fruit.id);
+                let quantity = document.getElementById(fruit.id + '-qty').value;
+                quantity = parseInt(quantity) || 0;
+
+                if (checkbox.checked) {
+                    total += fruit.price * quantity;
+                }
+            });
+
+            // Apply sales tax
+            total += total * taxRate;
+            alert("Your total cost is $" + total.toFixed(2));
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <h2>Fruit Cost Calculator</h2>
+    <form onsubmit="return calculateTotal();">
+        <label>
+            <input type="checkbox" id="apple" /> Apple (59 cents each)
+            <input type="text" id="apple-qty" placeholder="Quantity" size="5" />
+        </label><br />
+        <label>
+            <input type="checkbox" id="orange" /> Orange (49 cents each)
+            <input type="text" id="orange-qty" placeholder="Quantity" size="5" />
+        </label><br />
+        <label>
+            <input type="checkbox" id="banana" /> Banana (39 cents each)
+            <input type="text" id="banana-qty" placeholder="Quantity" size="5" />
+        </label><br />
+        <br />
+        <input type="submit" value="Calculate Total" />
+    </form>
+</body>
+</html>
