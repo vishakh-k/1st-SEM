@@ -1,63 +1,59 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
-    <title>Collapsible Paragraphs</title>
+    <title>Paragraph stack ordering</title>
     <style>
-        .container {
-            position: relative;
-            width: 300px;
-            margin: 50px auto;
-        }
-
-        .para {
+        #layer1 {
+            background-color: red;
+            border: 5px solid black;
+            left: 200px;
+            top: 200px;
+            height: 300px;
+            width: 400;
+            z-index: 0;
             position: absolute;
-            width: 100%;
-            padding: 10px;
-            border: 1px solid black;
-            transition: all 0.3s ease-in-out;
-            overflow: hidden;
-            height: 30px;
+            padding: 30px;
         }
 
-        .para:nth-child(1) {
-            top: 0;
-            background: lightblue;
+        #layer2 {
+            background-color: blue;
+            border: 5px solid black;
+            left: 220px;
+            top: 220px;
+            height: 300px;
+            width: 400;
+            z-index: 0;
+            position: absolute;
+            padding: 30px;
         }
 
-        .para:nth-child(2) {
-            top: 30px;
-            background: lightgreen;
-        }
-
-        .para:nth-child(3) {
-            top: 60px;
-            background: lightcoral;
+        #layer3 {
+            background-color: gray;
+            border: 5px solid black;
+            left: 240px;
+            top: 240px;
+            height: 300px;
+            width: 400;
+            z-index: 0;
+            position: absolute;
+            padding: 30px;
         }
     </style>
 </head>
 
+
 <body>
-    <div class="container">
-        <div class="para" onmouseover="bringToTop(this)" onmouseout="restoreOrder()">Paragraph 1</div>
-        <div class="para" onmouseover="bringToTop(this)" onmouseout="restoreOrder()">Paragraph 2</div>
-        <div class="para" onmouseover="bringToTop(this)" onmouseout="restoreOrder()">Paragraph 3</div>
-    </div>
-
     <script>
-        let paragraphs = document.querySelectorAll('.para');
-        let originalOrder = Array.from(paragraphs);
-
-        function bringToTop(element) {
-            element.style.zIndex = "10";
-        }
-
-        function restoreOrder() {
-            paragraphs.forEach((para, index) => {
-                para.style.zIndex = "1";
-            });
+        var toPlayer = 'layer3';
+        function mover(toTop) {
+            document.getElementById(toPlayer).style.zIndex = '0';
+            document.getElementById(toTop).style.zIndex = '1';
+            toPlayer = toTop;
         }
     </script>
+    <div id="layer1" onmouseover="mover('layer1')">This is first paragraph</div>
+    <div id="layer2" onmouseover="mover('layer2')">This is second paragraph</div>
+    <div id="layer3" onmouseover="mover('layer3')">This is third paragraph</div>
 </body>
 
 </html>

@@ -1,0 +1,35 @@
+create table team(tid int(10)primary key,
+                    tname varchar(20),
+                    city varchar(20),
+                    coach varchar(20),
+                    cid varchar(10));
+insert into team values('10','rcb','banglore','Harshith','c101');
+insert into team values('11','csk','Chennai','Naman','c102');
+insert into team values('12','kkr','Kolkata','Khan','c103');
+insert into team values('13','dl','delhi','Sachin','c104');
+insert into team values('14','MI','mumbai','Malimga','c105');
+
+create table player(pid int(10)primary key, pname varchar(20), page int(10), tid int(10)references team(tid));
+
+insert into player values(201,'Kohli','32',10);
+insert into player values(202,'DK','38',10);
+insert into player values(203,'Dhoni','42',11);
+insert into player values(204,'Kuldeep','29',12);
+insert into player values(205,'Narine','20',13);
+insert into player values(206,'Rohith','35',14);
+
+create table phone(pid int(10) references player(pid), phoneno int(20));
+
+insert into phone values(201,829639914);
+
+create table stadium(sid int(20)primary key,s_name varchar(20),city varchar(20),area varchar(20),pincode int(10));
+
+insert into stadium values(1,'Mngala','Mangalore','Lalabagh',574253);
+insert into stadium values(1,'Mngala','Mangalore','Lalabagh',574253);
+
+
+create table schedule(mid int(10)primarykey, host_team varchar(20) references team(tid),
+guest_team varchar(20) references team(tid),
+won_team varchar(20) references team(tid),
+manofmatch varchar(20) references player(pid),
+sid int (20) references stadium(sid));

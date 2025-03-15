@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Simple Stacked Paragraphs</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .paragraph {
+            width: 300px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: -70px; /* Stack paragraphs with overlap */
+            transition: margin-bottom 0.3s ease;
+        }
+        .paragraph:hover {
+            margin-bottom: 0; /* Bring hovered paragraph to the top */
+        }
+    </style>
+</head>
+<body>
+    <p class="paragraph" id="paragraph1">
+        This is the first paragraph. It will rise to the top when hovered over.
+    </p>
+    <p class="paragraph" id="paragraph2">
+        This is the second paragraph. It will rise to the top when hovered over.
+    </p>
+    <p class="paragraph" id="paragraph3">
+        This is the third paragraph. It will rise to the top when hovered over.
+    </p>
+</body>
+</html>
