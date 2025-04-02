@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci of n numbers</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var a = 0;
+        var b = 1;
+        var c, i;
+        var n = prompt("enter n", "")
+        while (n <= 0) {
+            alert("please enter a postive value");
+            n = prompt("enter n", "");
+        }
+        document.write("Fibonacci series<br/>");
+        document.write(a, "<br/>");
+        document.write(b, "<br/>");
+        for (i = 0; i < n - 2; i++) {
+            c = a + b;
+            document.write(c, "<br/>");
+            a = b;
+            b = c;
+        }
+
+    </script>
+</body>
+
+</html>
