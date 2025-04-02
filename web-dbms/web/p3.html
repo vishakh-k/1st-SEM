@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <title>Paragraph stack ordering</title>
     <style>
@@ -14,7 +13,6 @@
             position: absolute;
             padding: 30px;
         }
-
         #layer2 {
             background-color: blue;
             border: 5px solid black;
@@ -26,7 +24,6 @@
             position: absolute;
             padding: 30px;
         }
-
         #layer3 {
             background-color: gray;
             border: 5px solid black;
@@ -39,9 +36,7 @@
             padding: 30px;
         }
     </style>
-</head>
-
-
+</head
 <body>
     <script>
         var toPlayer = 'layer3';
@@ -51,9 +46,8 @@
             toPlayer = toTop;
         }
     </script>
-    <div id="layer1" onmouseover="mover('layer1')">This is first paragraph</div>
+    <div id="layer1" onmouseover="mover('layer1')">This is third paragraph</div>
     <div id="layer2" onmouseover="mover('layer2')">This is second paragraph</div>
-    <div id="layer3" onmouseover="mover('layer3')">This is third paragraph</div>
+    <div id="layer3" onmouseover="mover('layer3')">This is first paragraph</div>
 </body>
-
 </html>
