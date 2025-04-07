@@ -3,7 +3,7 @@
 int main(){
     char opr;
     double num1,num2,result;
-    printf("Simple calculator\n");
+    printf("Simple calculator  \n");
     printf("Availabale operations:\n");
     printf("----------------------\n");
     printf("Addition:\n");
